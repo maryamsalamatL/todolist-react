@@ -1,7 +1,7 @@
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 import { useState } from "react";
-
+import styles from "./TodoApp.module.css";
 const TodoApp = () => {
   const [todos, setTodos] = useState([]);
 
@@ -13,10 +13,22 @@ const TodoApp = () => {
     };
     setTodos([...todos, newTodo]);
   };
+  const completeHandler = (id) => {
+    const index = todos.findIndex((t) => t.id === id);
+    const todo = { ...todos[index] };
+    todo.isCompleted = !todo.isCompleted;
+    const updatedTodos = [...todos];
+    updatedTodos[index] = todo;
+    setTodos(updatedTodos);
+  };
   return (
-    <div className="container">
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <h1>My Todo List</h1>
+        <span>2023</span>
+      </div>
       <TodoForm addTodoHandler={addTodoHandler} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onComplete={completeHandler} />
     </div>
   );
 };

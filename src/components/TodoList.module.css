@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.list {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+.Completed {
+  opacity: 0.5;
+}
+.btnBox {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.btn {
+  border: none;
+  background-color: #fff;
+  margin: 5px;
+  font-size: 20px;
+  cursor: pointer;
+}
