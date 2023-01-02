@@ -21,6 +21,18 @@ const TodoApp = () => {
     updatedTodos[index] = todo;
     setTodos(updatedTodos);
   };
+  const removeHandler = (id) => {
+    const filteredTodos = todos.filter((todo) => todo.id != id);
+    setTodos(filteredTodos);
+  };
+  const editHandler = (id, inputValue) => {
+    const index = todos.findIndex((todo) => todo.id === id);
+    const todo = { ...todos[index] };
+    todo.text = inputValue;
+    const updatedTodos = [...todos];
+    updatedTodos[index] = todo;
+    setTodos(updatedTodos);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -28,7 +40,12 @@ const TodoApp = () => {
         <span>2023</span>
       </div>
       <TodoForm addTodoHandler={addTodoHandler} />
-      <TodoList todos={todos} onComplete={completeHandler} />
+      <TodoList
+        todos={todos}
+        onComplete={completeHandler}
+        removeTodo={removeHandler}
+        onEdit={editHandler}
+      />
     </div>
   );
 };
