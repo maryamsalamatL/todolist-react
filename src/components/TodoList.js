@@ -1,6 +1,8 @@
 import Todo from "./Todo";
 import styles from "./TodoList.module.css";
-const TodoList = ({ todos, onComplete }) => {
+import { useState } from "react";
+
+const TodoList = ({ todos, onComplete, removeTodo, onEdit }) => {
   const renderTodos = () => {
     if (todos.length === 0) return <div>add some todos</div>;
 
@@ -11,6 +13,8 @@ const TodoList = ({ todos, onComplete }) => {
           key={todo.id}
           styles={styles}
           onComplete={onComplete}
+          removeTodo={removeTodo}
+          onEdit={onEdit}
         />
       );
     });
