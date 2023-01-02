@@ -20,6 +20,9 @@
   -o-border-radius: 5px 0px 0px 5px;
   color: rgb(15, 18, 28);
 }
+.input:focus {
+  border: 1px solid rgb(48, 101, 238);
+}
 .btn {
   width: 10%;
   height: 100%;
