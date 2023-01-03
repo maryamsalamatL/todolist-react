@@ -1,5 +1,8 @@
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import SideBar from "./sidebar/SideBar";
+import Header from "./header/Header";
+
 import { useState } from "react";
 import styles from "./TodoApp.module.css";
 const TodoApp = () => {
@@ -35,17 +38,21 @@ const TodoApp = () => {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <h1>My Todo List</h1>
-        <span>2023</span>
+      <Header />
+      <SideBar />
+      <div className={styles.body}>
+        <div className={styles.title}>
+          <h1>My Todo List</h1>
+          <span>2023</span>
+        </div>
+        <TodoForm addTodoHandler={addTodoHandler} />
+        <TodoList
+          todos={todos}
+          onComplete={completeHandler}
+          removeTodo={removeHandler}
+          onEdit={editHandler}
+        />
       </div>
-      <TodoForm addTodoHandler={addTodoHandler} />
-      <TodoList
-        todos={todos}
-        onComplete={completeHandler}
-        removeTodo={removeHandler}
-        onEdit={editHandler}
-      />
     </div>
   );
 };

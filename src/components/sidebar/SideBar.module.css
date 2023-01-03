@@ -1,0 +1,59 @@
+.container {
+  width: 30%;
+  height: 100%;
+  background-color: #fff;
+  padding: 60px 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  display: none;
+  position: relative;
+}
+.listIcon {
+  position: fixed;
+  top: 13px;
+  left: 15px;
+  font-size: 1.5rem;
+
+  color: #fff;
+}
+.closeIcon {
+  position: absolute;
+  bottom: 15px;
+  left: 90%;
+  color: rgb(48, 101, 238);
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+.ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+.li {
+  width: 90%;
+  height: 50px;
+  border-bottom: 1px solid rgb(240, 243, 247);
+  color: rgb(48, 101, 238);
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 0px;
+  position: relative;
+}
+.selected {
+  background-color: rgb(234, 240, 253);
+}
+.selected::before {
+  content: "";
+  width: 2px;
+  height: 100%;
+  background-color: rgb(48, 101, 238);
+
+  position: absolute;
+  left: 0;
+}
