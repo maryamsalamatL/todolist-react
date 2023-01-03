@@ -4,8 +4,11 @@
   background-color: #fff;
   padding: 60px 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  display: none;
   position: relative;
+  display: none;
+}
+.show {
+  display: block;
 }
 .listIcon {
   position: fixed;

@@ -1,8 +1,11 @@
 import styles from "./EditTodo.module.css";
 import { useState } from "react";
 import FormComponent from "../common/FormComponent";
-const EditTodo = ({ todo, onEdit, setEdit }) => {
+import { useTodosActions } from "./provider/TodoProvider";
+
+const EditTodo = ({ todo, setEdit }) => {
   const [inputValue, setInputValue] = useState(todo.text);
+  const { editHandler } = useTodosActions();
 
   const changeHandler = (e) => {
     setInputValue(e.target.value);
@@ -13,7 +16,7 @@ const EditTodo = ({ todo, onEdit, setEdit }) => {
       alert("enter todo");
       return;
     }
-    onEdit(todo.id, inputValue);
+    editHandler(todo.id, inputValue);
     setEdit({ id: null, isCompleted: false, text: "" });
   };
   return (

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styles from "./TodoForm.module.css";
 import FormComponent from "../common/FormComponent";
-const TodoForm = ({ addTodoHandler }) => {
+import { useTodosActions } from "./provider/TodoProvider";
+const TodoForm = () => {
+  const { addTodoHandler } = useTodosActions();
+
   const [inputValue, setInputValue] = useState("");
   const changeHandler = (e) => {
     setInputValue(e.target.value);

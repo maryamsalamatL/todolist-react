@@ -1,8 +1,17 @@
-import { FaRegCheckCircle, FaRegCircle, FaTrashAlt } from "react-icons/fa";
+import {
+  FaRegCheckCircle,
+  FaRegCircle,
+  FaTrashAlt,
+  FaRegStar,
+} from "react-icons/fa";
+import { BsFillStarFill } from "react-icons/bs";
 import { useState } from "react";
 import EditTodo from "./EditTodo";
+import { useTodosActions } from "./provider/TodoProvider";
 
-const Todo = ({ todo, onComplete, styles, removeTodo, onEdit }) => {
+const Todo = ({ todo, styles }) => {
+  const { removeHandler, completeHandler, importantHandler } =
+    useTodosActions();
   const [edit, setEdit] = useState({ id: null, isCompleted: false, text: "" });
 
   const renderTodo = () => {
@@ -15,7 +24,20 @@ const Todo = ({ todo, onComplete, styles, removeTodo, onEdit }) => {
       >
         <div className={styles.text}>{todo.text}</div>
         <div className={styles.btnBox}>
-          <button className={styles.btn} onClick={() => onComplete(todo.id)}>
+          <button
+            className={styles.btn}
+            onClick={() => importantHandler(todo.id)}
+          >
+            {todo.isImportant ? (
+              <BsFillStarFill className={styles.important} />
+            ) : (
+              <FaRegStar />
+            )}
+          </button>
+          <button
+            className={styles.btn}
+            onClick={() => completeHandler(todo.id)}
+          >
             {todo.isCompleted === false ? (
               <span>
                 <FaRegCircle />
@@ -29,7 +51,10 @@ const Todo = ({ todo, onComplete, styles, removeTodo, onEdit }) => {
           <button className={styles.btn} onClick={() => setEdit(todo)}>
             edit
           </button>
-          <button className={styles.btn} onClick={() => removeTodo(todo.id)}>
+          <button
+            className={`${styles.btn} ${styles.delete}`}
+            onClick={() => removeHandler(todo.id)}
+          >
             <FaTrashAlt />
           </button>
         </div>
@@ -38,11 +63,7 @@ const Todo = ({ todo, onComplete, styles, removeTodo, onEdit }) => {
   };
   return (
     <div className={styles.container}>
-      {edit.id ? (
-        <EditTodo todo={todo} onEdit={onEdit} setEdit={setEdit} />
-      ) : (
-        renderTodo()
-      )}
+      {edit.id ? <EditTodo todo={todo} setEdit={setEdit} /> : renderTodo()}
     </div>
   );
 };
