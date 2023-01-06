@@ -2,8 +2,12 @@ import styles from "./Header.module.css";
 import { BsSearch } from "react-icons/bs";
 import { useTodosActions } from "../provider/TodoProvider";
 
-const Header = () => {
-  const { filterHandler } = useTodosActions();
+const Header = ({ selectedValue }) => {
+  const { searchHandler } = useTodosActions();
+
+  const changeHandler = (e) => {
+    searchHandler(e, selectedValue);
+  };
   return (
     <div className={styles.header}>
       <div className={styles.inputBox}>
@@ -11,7 +15,7 @@ const Header = () => {
         <input
           type="search"
           className={styles.input}
-          onChange={(e) => filterHandler("search", e)}
+          onChange={changeHandler}
         />
       </div>
     </div>

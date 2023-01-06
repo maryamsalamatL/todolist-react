@@ -73,38 +73,39 @@ export const useTodosActions = () => {
     setFilterTodos(updatedTodos);
     setTodos(updatedTodos);
   };
-  const filterHandler = (type, e) => {
-    switch (type) {
-      case "all": {
-        return setTodos(filterTodos);
-      }
-      case "completed": {
-        const filteredTodos = filterTodos.filter((todo) => todo.isCompleted);
-        return setTodos(filteredTodos);
-      }
-      case "unCompleted": {
-        const filteredTodos = filterTodos.filter((todo) => !todo.isCompleted);
-        return setTodos(filteredTodos);
-      }
-      case "important": {
-        const filteredTodos = filterTodos.filter((todo) => todo.isImportant);
-        return setTodos(filteredTodos);
-      }
-      case "search": {
-        const value = e.target.value;
-        const filteredTodos = filterTodos.filter((todo) =>
-          todo.text.toLowerCase().includes(value.toLowerCase())
-        );
-        setTodos(filteredTodos);
-      }
+  const filterHandler = (selectedValue) => {
+    if (selectedValue === "all") {
+      setTodos(filterTodos);
+      return filterTodos;
+    } else if (selectedValue === "important") {
+      const filteredTodos = filterTodos.filter((todo) => todo.isImportant);
+      setTodos(filteredTodos);
+      return filteredTodos;
+    } else if (selectedValue === "completed") {
+      const filteredTodos = filterTodos.filter((todo) => todo.isCompleted);
+      setTodos(filteredTodos);
+      return filteredTodos;
+    } else if (selectedValue === "unCompleted") {
+      const filteredTodos = filterTodos.filter((todo) => !todo.isCompleted);
+      setTodos(filteredTodos);
+      return filteredTodos;
     }
   };
+  const searchHandler = (e, selectedValue) => {
+    const filteredTodos = filterHandler(selectedValue);
+    const value = e.target.value;
+    const updatedTodos = filteredTodos.filter((todo) =>
+      todo.text.toLowerCase().includes(value.toLowerCase())
+    );
+    setTodos(updatedTodos);
+  };
   return {
-    filterHandler,
     editHandler,
     removeHandler,
     completeHandler,
     addTodoHandler,
     importantHandler,
+    filterHandler,
+    searchHandler,
   };
 };
