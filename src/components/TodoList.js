@@ -9,7 +9,9 @@ const TodoList = () => {
     if (todos.length === 0) return <div>add some todos</div>;
 
     return todos.map((todo) => {
-      return <Todo todo={todo} key={todo.id} styles={styles} />;
+      return (
+        <Todo todo={todo} key={todo.id} styles={styles} date={todo.date} />
+      );
     });
   };
 

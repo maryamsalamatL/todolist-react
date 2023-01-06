@@ -1,4 +1,5 @@
 import React, { useState, useContext, useReducer } from "react";
+import _ from "lodash";
 
 const TodoContext = React.createContext();
 const FilterTodoContext = React.createContext();
@@ -37,6 +38,7 @@ export const useTodosActions = () => {
       isCompleted: false,
       isImportant: false,
       text: inputValue,
+      date: new Date().toISOString(),
     };
     setFilterTodos([...filterTodos, newTodo]);
     setTodos([...todos, newTodo]);
@@ -99,6 +101,14 @@ export const useTodosActions = () => {
     );
     setTodos(updatedTodos);
   };
+  const sortHandler = (value, filterValue) => {
+    const filteredTodos = filterHandler(filterValue);
+    if (value === "oldest") {
+      setTodos(_.orderBy(filteredTodos, ["date"], ["asc"]));
+    } else {
+      setTodos(_.orderBy(filteredTodos, ["date"], ["desc"]));
+    }
+  };
   return {
     editHandler,
     removeHandler,
@@ -107,5 +117,6 @@ export const useTodosActions = () => {
     importantHandler,
     filterHandler,
     searchHandler,
+    sortHandler,
   };
 };

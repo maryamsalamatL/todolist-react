@@ -14,9 +14,10 @@ const TodoApp = () => {
         <div className={styles.body}>
           <div className={styles.title}>
             <h1>My Todo List</h1>
-            <span>2023</span>
+            <span>{new Date().toLocaleDateString("en-GB")}</span>
           </div>
           <TodoForm />
+
           <TodoList />
         </div>
       </div>

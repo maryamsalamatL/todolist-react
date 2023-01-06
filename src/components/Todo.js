@@ -9,7 +9,7 @@ import { useState } from "react";
 import EditTodo from "./EditTodo";
 import { useTodosActions } from "./provider/TodoProvider";
 
-const Todo = ({ todo, styles }) => {
+const Todo = ({ todo, styles, date }) => {
   const { removeHandler, completeHandler, importantHandler } =
     useTodosActions();
   const [edit, setEdit] = useState({ id: null, isCompleted: false, text: "" });
@@ -22,7 +22,14 @@ const Todo = ({ todo, styles }) => {
         }`}
         key={todo.id}
       >
-        <div className={styles.text}>{todo.text}</div>
+        <div className={styles.textBox}>
+          <span className={styles.text}>{todo.text}</span>
+          <span className={styles.date}>
+            {new Date(date).toLocaleDateString("en-GB")}
+            {`       `}
+            {new Date(date).toLocaleTimeString("en-GB")}
+          </span>
+        </div>
         <div className={styles.btnBox}>
           <button
             className={styles.btn}

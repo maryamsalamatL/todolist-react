@@ -1,6 +1,7 @@
 import styles from "./Header.module.css";
 import { BsSearch } from "react-icons/bs";
 import { useTodosActions } from "../provider/TodoProvider";
+import Sort from "../sort/Sort";
 
 const Header = ({ selectedValue }) => {
   const { searchHandler } = useTodosActions();
@@ -17,6 +18,7 @@ const Header = ({ selectedValue }) => {
           className={styles.input}
           onChange={changeHandler}
         />
+        <Sort filterValue={selectedValue} />
       </div>
     </div>
   );

@@ -20,9 +20,19 @@
   -o-border-radius: 5px;
   padding: 10px;
 }
+.textBox {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .text {
   font-size: 18px;
   font-weight: bold;
+}
+.date {
+  color: rgb(144, 145, 153);
+  font-size: 12px;
 }
 .Completed {
   opacity: 0.5;
