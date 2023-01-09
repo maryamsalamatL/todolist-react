@@ -11,7 +11,7 @@ const StatusContextDispatcher = React.createContext();
 const TodoProvider = ({ children }) => {
   const [todos, setTodos] = useState([]);
   const [allTodos, setAllTodos] = useState([]);
-  const [status, setStatus] = useState("all");
+  const [status, setStatus] = useState("home");
 
   return (
     <TodoContext.Provider value={todos}>
@@ -101,7 +101,10 @@ export const useTodosActions = () => {
     setTodos(updatedTodos);
   };
   const filterHandler = (status) => {
-    if (status === "all") {
+    if (status === "home") {
+      setTodos(allTodos);
+      return allTodos;
+    } else if (status === "all") {
       setTodos(allTodos);
       return allTodos;
     } else if (status === "important") {

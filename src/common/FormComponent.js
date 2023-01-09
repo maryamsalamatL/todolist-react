@@ -15,7 +15,7 @@ const FormComponent = ({
   return (
     <form
       className={
-        status === "all" ? styles.form : `${styles.form} ${styles.disabeld}`
+        status === "home" ? styles.form : `${styles.form} ${styles.disabeld}`
       }
       onSubmit={submitHandler}
     >

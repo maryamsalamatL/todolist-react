@@ -8,7 +8,9 @@ const TodoList = () => {
   const status = useStatus();
   const renderTodos = () => {
     if (todos.length === 0)
-      return <div>{status === "all" ? "add some todos" : ""}</div>;
+      return (
+        <div>{status === "home" ? "add some todos" : "there is no todos"}</div>
+      );
 
     return todos.map((todo) => {
       return (
