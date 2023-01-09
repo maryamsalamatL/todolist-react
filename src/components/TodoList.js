@@ -1,12 +1,14 @@
 import Todo from "./Todo";
 import styles from "./TodoList.module.css";
 
-import { useTodos } from "./provider/TodoProvider";
+import { useTodos, useStatus } from "./provider/TodoProvider";
 
 const TodoList = () => {
   const todos = useTodos();
+  const status = useStatus();
   const renderTodos = () => {
-    if (todos.length === 0) return <div>add some todos</div>;
+    if (todos.length === 0)
+      return <div>{status === "all" ? "add some todos" : ""}</div>;
 
     return todos.map((todo) => {
       return (

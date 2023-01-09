@@ -3,7 +3,10 @@
   height: 50px;
   display: flex;
   align-items: stretch;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
+}
+.disabeld {
+  display: none;
 }
 .input {
   width: 90%;

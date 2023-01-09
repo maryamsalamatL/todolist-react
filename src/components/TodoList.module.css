@@ -19,6 +19,8 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   padding: 10px;
+  animation: Todo 0.5s ease;
+  -webkit-animation: Todo 0.5s ease;
 }
 .textBox {
   height: 50px;
@@ -55,6 +57,22 @@
   color: #dc2626;
 }
 .important {
-  /* color: rgb(116, 103, 198); */
-  color: #c084fc;
+  color: #db2777;
+}
+@keyframes Todo {
+  0% {
+    background-color: rgb(232, 239, 255);
+    transform: translateY(-5px);
+    -webkit-transform: translateY(-5px);
+    -moz-transform: translateY(-5px);
+    -ms-transform: translateY(-5px);
+    -o-transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+  }
 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-
+import { useStatus } from "../components/provider/TodoProvider";
 const FormComponent = ({
   styles,
   submitHandler,
@@ -8,11 +8,17 @@ const FormComponent = ({
   text,
 }) => {
   const inputRef = useRef();
+  const status = useStatus();
   useEffect(() => {
     inputRef.current.focus();
   }, []);
   return (
-    <form className={styles.form} onSubmit={submitHandler}>
+    <form
+      className={
+        status === "all" ? styles.form : `${styles.form} ${styles.disabeld}`
+      }
+      onSubmit={submitHandler}
+    >
       <input
         type="text"
         value={inputValue}

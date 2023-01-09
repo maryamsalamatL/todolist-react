@@ -1,21 +1,22 @@
 import styles from "./Sort.module.css";
-import { useState, useEffect } from "react";
-import { useTodosActions } from "../provider/TodoProvider";
+import { useEffect } from "react";
+import { useTodosActions, useStatus } from "../provider/TodoProvider";
 
-const Sort = ({ filterValue }) => {
-  const [value, setValue] = useState("");
+const Sort = ({ sortValue, setSortValue }) => {
+  const status = useStatus();
   const { sortHandler } = useTodosActions();
+
   useEffect(() => {
-    sortHandler(value, filterValue);
-  }, [value]);
+    sortHandler(sortValue);
+  }, [sortValue, status]);
   return (
     <div className={styles.container}>
       <select
         className={styles.select}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={sortValue}
+        onChange={(e) => setSortValue(e.target.value)}
       >
-        <option value="newest" className={styles.option} selected>
+        <option value="newest" className={styles.option}>
           Newest
         </option>
         <option value="oldest" className={styles.option}>

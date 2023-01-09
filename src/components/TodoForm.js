@@ -1,11 +1,13 @@
 import { useState } from "react";
 import styles from "./TodoForm.module.css";
 import FormComponent from "../common/FormComponent";
-import { useTodosActions } from "./provider/TodoProvider";
+import Sort from "./sort/Sort";
+import { useTodosActions, useStatus } from "./provider/TodoProvider";
 const TodoForm = () => {
   const { addTodoHandler } = useTodosActions();
-
+  const status = useStatus();
   const [inputValue, setInputValue] = useState("");
+  const [sortValue, setSortValue] = useState("newest");
   const changeHandler = (e) => {
     setInputValue(e.target.value);
   };
@@ -15,17 +17,21 @@ const TodoForm = () => {
       alert("enter todo");
       return;
     }
-    addTodoHandler(inputValue);
+
+    addTodoHandler(inputValue, sortValue);
     setInputValue("");
   };
   return (
-    <FormComponent
-      styles={styles}
-      inputValue={inputValue}
-      submitHandler={submitHandler}
-      changeHandler={changeHandler}
-      text="add"
-    />
+    <div>
+      <FormComponent
+        styles={styles}
+        inputValue={inputValue}
+        submitHandler={submitHandler}
+        changeHandler={changeHandler}
+        text="add"
+      />
+      <Sort sortValue={sortValue} setSortValue={setSortValue} />
+    </div>
   );
 };
 

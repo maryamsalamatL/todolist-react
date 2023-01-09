@@ -69,13 +69,22 @@
 }
 .selected {
   background-color: rgb(234, 240, 253);
+  animation: Li 0.3s ease-in-out;
+  -webkit-animation: Li 0.3s ease-in-out;
 }
 .selected::before {
   content: "";
   width: 2px;
   height: 100%;
   background-color: rgb(48, 101, 238);
-
   position: absolute;
   left: 0;
+}
+@keyframes Li {
+  0% {
+    background-color: rgb(170, 196, 250);
+  }
+  100% {
+    background-color: rgb(234, 240, 253);
+  }
 }

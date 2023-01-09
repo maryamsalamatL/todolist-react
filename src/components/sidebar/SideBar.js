@@ -5,13 +5,18 @@ import { BsChevronLeft } from "react-icons/bs";
 import { useRef, useEffect } from "react";
 import Header from "../header/Header";
 import { useState } from "react";
-import { useFilterTodos } from "../provider/TodoProvider";
+import {
+  useAllTodos,
+  useStatus,
+  useStatusActions,
+} from "../provider/TodoProvider";
 
 const SideBar = () => {
-  const [selected, setSelected] = useState("all");
-  const { filterHandler } = useTodosActions();
+  const status = useStatus();
+  const setStatus = useStatusActions();
   const sideBarRef = useRef();
-  const todos = useFilterTodos();
+  const todos = useAllTodos();
+  const { filterHandler } = useTodosActions();
 
   const sideBarHandler = (value) => {
     value === "show"
@@ -19,12 +24,12 @@ const SideBar = () => {
       : (sideBarRef.current.className = styles.container);
   };
   useEffect(() => {
-    filterHandler(selected);
-  }, [selected]);
+    filterHandler(status);
+  }, [status]);
 
   return (
     <>
-      <Header selectedValue={selected} />
+      <Header />
       <FaBars
         className={styles.listIcon}
         onClick={() => sideBarHandler("show")}
@@ -33,12 +38,12 @@ const SideBar = () => {
         <ul className={styles.ul}>
           <li
             className={
-              selected === "all" ? `${styles.li} ${styles.selected}` : styles.li
+              status === "all" ? `${styles.li} ${styles.selected}` : styles.li
             }
             data-value="all"
-            onClick={(e) => setSelected(e.target.dataset.value)}
+            onClick={(e) => setStatus(e.target.dataset.value)}
           >
-            <span>all todos</span>
+            <span>add todos</span>
             {todos.length ? (
               <span className={styles.count}>{todos.length}</span>
             ) : (
@@ -47,12 +52,12 @@ const SideBar = () => {
           </li>
           <li
             className={
-              selected === "important"
+              status === "important"
                 ? `${styles.li} ${styles.selected}`
                 : styles.li
             }
             data-value="important"
-            onClick={(e) => setSelected(e.target.dataset.value)}
+            onClick={(e) => setStatus(e.target.dataset.value)}
           >
             <span>important</span>
             {todos.filter((todo) => todo.isImportant).length ? (
@@ -65,12 +70,12 @@ const SideBar = () => {
           </li>
           <li
             className={
-              selected === "completed"
+              status === "completed"
                 ? `${styles.li} ${styles.selected}`
                 : styles.li
             }
             data-value="completed"
-            onClick={(e) => setSelected(e.target.dataset.value)}
+            onClick={(e) => setStatus(e.target.dataset.value)}
           >
             <span>completed</span>
             {todos.filter((todo) => todo.isCompleted).length ? (
@@ -83,12 +88,12 @@ const SideBar = () => {
           </li>
           <li
             className={
-              selected === "unCompleted"
+              status === "unCompleted"
                 ? `${styles.li} ${styles.selected}`
                 : styles.li
             }
             data-value="unCompleted"
-            onClick={(e) => setSelected(e.target.dataset.value)}
+            onClick={(e) => setStatus(e.target.dataset.value)}
           >
             <span>unCompleted</span>
             {todos.filter((todo) => !todo.isCompleted).length ? (
