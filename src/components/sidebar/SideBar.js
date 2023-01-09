@@ -38,12 +38,21 @@ const SideBar = () => {
         <ul className={styles.ul}>
           <li
             className={
+              status === "home" ? `${styles.li} ${styles.selected}` : styles.li
+            }
+            data-value="home"
+            onClick={(e) => setStatus(e.target.dataset.value)}
+          >
+            <span>add todos</span>
+          </li>
+          <li
+            className={
               status === "all" ? `${styles.li} ${styles.selected}` : styles.li
             }
             data-value="all"
             onClick={(e) => setStatus(e.target.dataset.value)}
           >
-            <span>add todos</span>
+            <span>all todos</span>
             {todos.length ? (
               <span className={styles.count}>{todos.length}</span>
             ) : (

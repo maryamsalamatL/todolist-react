@@ -43,3 +43,11 @@
   font-size: 15px;
   font-weight: bold;
 }
+@media only screen and (max-width: 600px) {
+  .input {
+    width: 75%;
+  }
+  .btn {
+    width: 25%;
+  }
+}
