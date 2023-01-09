@@ -42,7 +42,17 @@
   color: rgb(15, 18, 28);
   font-size: 15px;
   font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
 }
+.btn:hover {
+  color: #fff;
+  background-color: rgb(48, 101, 238);
+}
+
 @media only screen and (max-width: 600px) {
   .input {
     width: 75%;

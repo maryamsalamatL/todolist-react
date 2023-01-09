@@ -43,7 +43,7 @@ const SideBar = () => {
             data-value="home"
             onClick={(e) => setStatus(e.target.dataset.value)}
           >
-            <span>add todos</span>
+            <span>add todo</span>
           </li>
           <li
             className={
@@ -52,7 +52,7 @@ const SideBar = () => {
             data-value="all"
             onClick={(e) => setStatus(e.target.dataset.value)}
           >
-            <span>all todos</span>
+            <span>all</span>
             {todos.length ? (
               <span className={styles.count}>{todos.length}</span>
             ) : (
@@ -104,7 +104,7 @@ const SideBar = () => {
             data-value="unCompleted"
             onClick={(e) => setStatus(e.target.dataset.value)}
           >
-            <span>unCompleted</span>
+            <span>uncompleted</span>
             {todos.filter((todo) => !todo.isCompleted).length ? (
               <span className={styles.count}>
                 {todos.filter((todo) => !todo.isCompleted).length}
