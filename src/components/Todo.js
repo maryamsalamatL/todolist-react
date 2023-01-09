@@ -26,8 +26,6 @@ const Todo = ({ todo, styles, date }) => {
           <span className={styles.text}>{todo.text}</span>
           <span className={styles.date}>
             {new Date(date).toLocaleDateString("en-GB")}
-            {`       `}
-            {new Date(date).toLocaleTimeString("en-GB")}
           </span>
         </div>
         <div className={styles.btnBox}>
