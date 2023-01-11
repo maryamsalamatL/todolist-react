@@ -4,7 +4,6 @@ import { FaBars } from "react-icons/fa";
 import { BsChevronLeft } from "react-icons/bs";
 import { useRef, useEffect } from "react";
 import Header from "../header/Header";
-import { useState } from "react";
 import {
   useAllTodos,
   useStatus,

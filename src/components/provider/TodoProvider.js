@@ -69,15 +69,20 @@ export const useTodosActions = () => {
     const todo = { ...todos[index] };
     todo.isCompleted = !todo.isCompleted;
     const updatedTodos = [...todos];
-    const updatedAllTodos = [...allTodos];
     updatedTodos[index] = todo;
-    updatedAllTodos[index] = todo;
+
+    const index2 = allTodos.findIndex((t) => t.id === id);
+    const todo2 = { ...allTodos[index2] };
+    todo2.isCompleted = !todo2.isCompleted;
+    const updatedAllTodos = [...allTodos];
+    updatedAllTodos[index2] = todo2;
     setAllTodos(updatedAllTodos);
     setTodos(updatedTodos);
   };
   const removeHandler = (id) => {
     const filteredTodos = todos.filter((todo) => todo.id != id);
-    setAllTodos(filteredTodos);
+    const filteredAllTodos = allTodos.filter((todo) => todo.id != id);
+    setAllTodos(filteredAllTodos);
     setTodos(filteredTodos);
   };
   const editHandler = (id, inputValue) => {
@@ -86,7 +91,13 @@ export const useTodosActions = () => {
     todo.text = inputValue;
     const updatedTodos = [...todos];
     updatedTodos[index] = todo;
-    setAllTodos(updatedTodos);
+
+    const index2 = allTodos.findIndex((todo) => todo.id === id);
+    const todo2 = { ...allTodos[index2] };
+    todo2.text = inputValue;
+    const updatedAllTodos = [...allTodos];
+    updatedAllTodos[index2] = todo2;
+    setAllTodos(updatedAllTodos);
     setTodos(updatedTodos);
   };
   const importantHandler = (id) => {
@@ -94,9 +105,14 @@ export const useTodosActions = () => {
     const todo = { ...todos[index] };
     todo.isImportant = !todo.isImportant;
     const updatedTodos = [...todos];
+
+    const index2 = allTodos.findIndex((t) => t.id === id);
+    const todo2 = { ...todos[index2] };
+    todo2.isImportant = !todo2.isImportant;
     const updatedAllTodos = [...allTodos];
+    updatedAllTodos[index2] = todo2;
     updatedTodos[index] = todo;
-    updatedAllTodos[index] = todo;
+
     setAllTodos(updatedAllTodos);
     setTodos(updatedTodos);
   };
